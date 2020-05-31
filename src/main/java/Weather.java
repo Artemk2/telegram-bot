@@ -10,8 +10,10 @@ public class Weather {
 
     //Класс, который обрабатывает погоду
     public static String getWeather(String message, Model model) throws IOException {
+        String appid = System.getenv().get("OPENWEATHERMAP_APPID");
+
         //Делаем URL запрос
-       URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + message + "&units=metric&appid=f27502e9771049ac9d48b1c51d5ad459");
+       URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + message + "&units=metric&appid=" + appid);
 
        //Надо прочитать содержимое ответа
         Scanner in = new Scanner((InputStream) url.getContent());

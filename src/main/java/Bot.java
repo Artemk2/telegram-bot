@@ -16,10 +16,14 @@ import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
     public static void main(String[] args) throws FileNotFoundException {
-        //Запускаю тор для обхода блокировки
-        System.getProperties().put( "proxySet", "true" );
-        System.getProperties().put( "socksProxyHost", "127.0.0.1" );
-        System.getProperties().put( "socksProxyPort", "9150" );
+
+        String useTor = System.getenv().get("TOR");
+        if (useTor.toUpperCase() == "TRUE") {
+            //Запускаю тор для обхода блокировки
+            System.getProperties().put( "proxySet", "true" );
+            System.getProperties().put( "socksProxyHost", "127.0.0.1" );
+            System.getProperties().put( "socksProxyPort", "9150" );
+        }
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -112,7 +116,19 @@ public class Bot extends TelegramLongPollingBot {
     }
 
 
-    public String getBotUsername() {return "name_bot";}
+    public String getBotUsername() {
+        String botName = System.getenv().get("TELEGRAM_USERNAME");
+        if (botName == null) {
+            System.out.println("TELEGRAM_USERNAME не обнаружен");
+        }
+        return botName;
+    }
 
-    public String getBotToken() {return "token";}
+    public String getBotToken() {
+        String token = System.getenv().get("TELEGRAM_TOKEN");
+        if (token == null) {
+            System.out.println("TELEGRAM_TOKEN не обнаружен");
+        }
+        return token;
+    }
 }
