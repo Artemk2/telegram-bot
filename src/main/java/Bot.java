@@ -17,13 +17,16 @@ import java.util.List;
 public class Bot extends TelegramLongPollingBot {
     public static void main(String[] args) throws FileNotFoundException {
 
-        String useTor = System.getenv().get("TOR");
-        if (useTor.equalsIgnoreCase("true")) {
-            //Запускаю тор для обхода блокировки
-            System.getProperties().put( "proxySet", "true" );
-            System.getProperties().put( "socksProxyHost", "127.0.0.1" );
-            System.getProperties().put( "socksProxyPort", "9150" );
-        }
+//        String useTor = System.getenv().get("TOR");
+//        if (useTor == null) {
+//            System.out.println("TOR не обнаружен");
+//        }
+//        if (useTor.equalsIgnoreCase("true")) {
+//            //Запускаю тор для обхода блокировки
+//            System.getProperties().put( "proxySet", "true" );
+//            System.getProperties().put( "socksProxyHost", "127.0.0.1" );
+//            System.getProperties().put( "socksProxyPort", "9150" );
+//        }
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
