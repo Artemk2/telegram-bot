@@ -1,0 +1,1 @@
+bot: java -jar target/telegram_bot-1.0-SNAPSHOT.jar

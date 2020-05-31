@@ -18,7 +18,7 @@ public class Bot extends TelegramLongPollingBot {
     public static void main(String[] args) throws FileNotFoundException {
 
         String useTor = System.getenv().get("TOR");
-        if (useTor.toUpperCase() == "TRUE") {
+        if (useTor.equalsIgnoreCase("true")) {
             //Запускаю тор для обхода блокировки
             System.getProperties().put( "proxySet", "true" );
             System.getProperties().put( "socksProxyHost", "127.0.0.1" );
