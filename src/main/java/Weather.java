@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class Weather {
-
     //Класс, который обрабатывает погоду
     public static String getWeather(String message, Model model) throws IOException {
         String appid = System.getenv().get("OPENWEATHERMAP_APPID");
@@ -51,6 +50,6 @@ public class Weather {
                 "Влажность: " + model.getHumidity() + ", %" + "\n" +
                 "Описание: " + model.getMain() + "\n" +
                 //Изображение
-                "http://openweathermap.org/img/wn/" + model.getIcon() + ".png";
+                "https://openweathermap.org/img/wn/" + model.getIcon() + ".png";
     }
 }

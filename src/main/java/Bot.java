@@ -9,24 +9,26 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 public class Bot extends TelegramLongPollingBot {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
-//        String useTor = System.getenv().get("TOR");
-//        if (useTor == null) {
-//            System.out.println("TOR не обнаружен");
-//        }
-//        if (useTor.equalsIgnoreCase("true")) {
-//            //Запускаю тор для обхода блокировки
-//            System.getProperties().put( "proxySet", "true" );
-//            System.getProperties().put( "socksProxyHost", "127.0.0.1" );
-//            System.getProperties().put( "socksProxyPort", "9150" );
-//        }
+        String useTor = System.getenv().get("TOR");
+        if (useTor == null) {
+            System.out.println("TOR не обнаружен");
+        }
+        System.out.println(Objects.requireNonNull(useTor));
+        if (useTor.equalsIgnoreCase("true")) {
+            //Запускаю тор для обхода блокировки
+            System.getProperties().put( "proxySet", "true" );
+            System.getProperties().put( "socksProxyHost", "127.0.0.1" );
+            System.getProperties().put( "socksProxyPort", "9150" );
+        }
 
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -118,7 +120,6 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-
     public String getBotUsername() {
         String botName = System.getenv().get("TELEGRAM_USERNAME");
         if (botName == null) {
@@ -128,7 +129,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotToken() {
-        String token = System.getenv().get("TELEGRAM_TOKEN");
+        String token = System.getenv("TELEGRAM_TOKEN");
         if (token == null) {
             System.out.println("TELEGRAM_TOKEN не обнаружен");
         }
